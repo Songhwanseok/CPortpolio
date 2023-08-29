@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "Animation/AnimInstance.h"
+#include "Components/CStateComponent.h"
 #include "CAnimInstance.generated.h"
 
 UCLASS()

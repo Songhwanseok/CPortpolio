@@ -4,6 +4,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Engine/SkeletalMesh.h"
 #include "Camera/CameraComponent.h"
+#include "Components/CStateComponent.h"
 
 ACPlayer::ACPlayer()
 {
