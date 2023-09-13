@@ -2,16 +2,16 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "CWeaponActionComponent.generated.h"
+#include "CActionComponent.generated.h"
 
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class CPORTPOLIO_API UCWeaponActionComponent : public UActorComponent
+class CPORTPOLIO_API UCActionComponent : public UActorComponent
 {
 	GENERATED_BODY()
 
 public:	
-	UCWeaponActionComponent();
+	UCActionComponent();
 
 protected:
 	virtual void BeginPlay() override;
