@@ -5,8 +5,6 @@
 #include "Global.h"
 #include "CPlayer.generated.h"
 
-//DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FAttackSignature, )
-
 UCLASS()
 class CPORTPOLIO_API ACPlayer : public ACharacter
 {
@@ -29,9 +27,31 @@ private:
 	void OnVerticalLook(float InAxis);
 	
 	//Action Event
-	//void OnAttack();
+	void OnWalk();
+	void OffWalk();
+	void OnMainAction();
+	void OnSubAction();
 
-private:
-	class USpringArmComponent* SpringArm;
-	class UCameraComponent* Camera;
+	UFUNCTION()
+		void OnTwoHand();
+
+private: //Scene Component
+	UPROPERTY(VisibleDefaultsOnly)
+		class USpringArmComponent* SpringArm;
+
+	UPROPERTY(VisibleDefaultsOnly)
+		class UCameraComponent* Camera;
+
+private: //Actor Component
+	UPROPERTY(VisibleDefaultsOnly)
+		class UCStatusComponent* Status;
+
+	UPROPERTY(VisibleDefaultsOnly)
+		class UCStateComponent* State;
+
+	UPROPERTY(VisibleDefaultsOnly)
+		class UCActionComponent* Action;
+
+	/*UPROPERTY(VisibleDefaultsOnly)
+		class UCFeetComponent* Feet;*/
 };

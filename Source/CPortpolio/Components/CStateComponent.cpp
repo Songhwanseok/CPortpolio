@@ -12,21 +12,25 @@ void UCStateComponent::BeginPlay()
 
 void UCStateComponent::SetIdleMode()
 {
-	SetState(EStateType::Idle);
+	ChangeType(EStateType::Idle);
 }
 
 void UCStateComponent::SetEquipMode()
 {
-	SetState(EStateType::Equip);
+	ChangeType(EStateType::Equip);
 }
 
-void UCStateComponent::SetAttackMode()
+void UCStateComponent::SetActionMode()
 {
-	SetState(EStateType::Attack);
+	ChangeType(EStateType::Action);
 }
 
-void UCStateComponent::SetState(EStateType InState)
+void UCStateComponent::ChangeType(EStateType InNewType)
 {
-	State = InState;
+	EStateType prev = Type;
+	Type = InNewType;
+
+	if (OnStateTypeChanged.IsBound())
+		OnStateTypeChanged.Broadcast(prev, InNewType);
 }
 

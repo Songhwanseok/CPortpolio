@@ -5,11 +5,19 @@
 #include "Engine/SkeletalMesh.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CStateComponent.h"
+#include "Components/CStatusComponent.h"
+#include "Components/CActionComponent.h"
 
 ACPlayer::ACPlayer()
 {
 	CHelpers::CreateSceneComponent(this, &SpringArm, "SpringArm", GetMesh());
 	CHelpers::CreateSceneComponent(this, &Camera, "Camera", SpringArm);
+
+	CHelpers::CreateActorComponent(this, &Action, "Action");
+	//CHelpers::CreateActorComponent(this, &Montages, "Montages");
+	CHelpers::CreateActorComponent(this, &Status, "Status");
+	CHelpers::CreateActorComponent(this, &State, "State");
+	//CHelpers::CreateActorComponent(this, &Feet, "Feet");
 
 	USkeletalMesh* meshAsset;
 	CHelpers::GetAsset<USkeletalMesh>(&meshAsset, "SkeletalMesh'/Game/Character/Mesh/SK_Mannequin.SK_Mannequin'");
@@ -46,7 +54,9 @@ void ACPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	PlayerInputComponent->BindAxis("VerticalLook", this, &ACPlayer::OnVerticalLook);
 
 	//Action
-
+	PlayerInputComponent->BindAction("MainAction", EInputEvent::IE_Pressed, this, &ACPlayer::OnMainAction);
+	PlayerInputComponent->BindAction("SubAction", EInputEvent::IE_Pressed, this, &ACPlayer::OnSubAction);
+	PlayerInputComponent->BindAction("TwoHand", EInputEvent::IE_Pressed, this, &ACPlayer::OnTwoHand);
 }
 
 void ACPlayer::OnMoveForward(float InAxis)
@@ -71,7 +81,32 @@ void ACPlayer::OnHorizontalLook(float InAxis)
 }
 
 void ACPlayer::OnVerticalLook(float InAxis)
-{
+{ 
 	AddControllerPitchInput(100 * InAxis * GetWorld()->GetDeltaSeconds());
+}
+
+void ACPlayer::OnWalk()
+{
+}
+
+void ACPlayer::OffWalk()
+{
+}
+
+void ACPlayer::OnMainAction()
+{
+	Action->DoAction();
+}
+
+void ACPlayer::OnSubAction()
+{
+	CLog::Print("SubAction");
+}
+
+void ACPlayer::OnTwoHand()
+{
+	CheckFalse(State->IsIdleMode());
+
+	Action->SetTwoHandMode();
 }
 

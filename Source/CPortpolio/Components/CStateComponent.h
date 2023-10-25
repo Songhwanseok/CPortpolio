@@ -7,8 +7,10 @@
 UENUM(BlueprintType)
 enum class EStateType : uint8
 {
-	Idle, Equip, Attack, MAX
+	Idle, Equip, Action, Hitted, Dead, MAX
 };
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FStateTypeChangedSignature, EStateType, InPrevType, EStateType, InNewType);
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class CPORTPOLIO_API UCStateComponent : public UActorComponent
@@ -22,13 +24,37 @@ protected:
 	virtual void BeginPlay() override;
 
 public:
+	UFUNCTION(BlueprintPure)
+		bool IsIdleMode() { return Type == EStateType::Idle; }
+
+	UFUNCTION(BlueprintPure)
+		bool IsEquipMode() { return Type == EStateType::Equip; }
+
+	UFUNCTION(BlueprintPure)
+		bool IsActionMode() { return Type == EStateType::Action; }
+
+	UFUNCTION(BlueprintPure)
+		bool IsHittedMode() { return Type == EStateType::Hitted; }
+
+	UFUNCTION(BlueprintPure)
+		bool IsDeadMode() { return Type == EStateType::Dead; }
+
+public:
+	EStateType GetType() { return Type; }
+
+public:
 	void SetIdleMode();
 	void SetEquipMode();
-	void SetAttackMode();
-	void SetState(EStateType InState);
-
+	void SetActionMode();
 
 private:
-	bool bCanMove;
-	EStateType State;
+	void ChangeType(EStateType InNewType);
+
+public:
+	UPROPERTY(BlueprintAssignable)
+		FStateTypeChangedSignature OnStateTypeChanged;
+
+private:
+	EStateType Type;
+	
 };
