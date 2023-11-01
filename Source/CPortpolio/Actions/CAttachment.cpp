@@ -20,7 +20,7 @@ void ACAttachment::BeginPlay()
 		collision->OnComponentEndOverlap.AddDynamic(this, &ACAttachment::EndOverlap);
 	}
 
-	OffCollision();
+	OffCollisions();
 
 	Super::BeginPlay();
 	
@@ -46,13 +46,13 @@ void ACAttachment::AttachToComp(USceneComponent* InComponent, FName InSocketName
 	);
 }
 
-void ACAttachment::OnCollision()
+void ACAttachment::OnCollisions()
 {
 	for (const auto& collision : Collisions)
 		collision->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
 }
 
-void ACAttachment::OffCollision()
+void ACAttachment::OffCollisions()
 {
 	for (const auto& collision : Collisions)
 		collision->SetCollisionEnabled(ECollisionEnabled::NoCollision);

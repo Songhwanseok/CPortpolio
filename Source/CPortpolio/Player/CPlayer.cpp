@@ -8,6 +8,7 @@
 #include "Components/CStatusComponent.h"
 #include "Components/CActionComponent.h"
 
+//Todo. 노티파이 작업하기
 ACPlayer::ACPlayer()
 {
 	CHelpers::CreateSceneComponent(this, &SpringArm, "SpringArm", GetMesh());
@@ -61,6 +62,9 @@ void ACPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 void ACPlayer::OnMoveForward(float InAxis)
 {
+	CheckTrue(FMath::IsNearlyZero(InAxis));
+	CheckFalse(Status->IsCanMove());
+
 	FRotator controlRotationYaw = FRotator(0, GetControlRotation().Yaw, 0);
 	FVector direction = FQuat(controlRotationYaw).GetForwardVector();
 
@@ -69,6 +73,9 @@ void ACPlayer::OnMoveForward(float InAxis)
 
 void ACPlayer::OnMoveRight(float InAxis)
 {
+	CheckTrue(FMath::IsNearlyZero(InAxis));
+	CheckFalse(Status->IsCanMove());
+
 	FRotator controlRotationYaw = FRotator(0, GetControlRotation().Yaw, 0);
 	FVector direction = FQuat(controlRotationYaw).GetRightVector();
 
