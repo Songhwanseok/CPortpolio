@@ -19,7 +19,7 @@ protected:
 	virtual float TakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
 
 public:
-	virtual void ChangebodyColor(FLinearColor InColor);
+	virtual void ChangeBodyColor(FLinearColor InColor);
 
 	UFUNCTION()
 		void RestorColor();
@@ -46,7 +46,17 @@ private:
 	UPROPERTY(VisibleDefaultsOnly)
 		class UCStatusComponent* Status;
 
+	UPROPERTY(VisibleDefaultsOnly)
+		class UCMontageComponent* Montages;
+
 private:
+	UPROPERTY(EditAnywhere)
+		float LaunchValue = 25.f;
+
+private:
+	class UMaterialInstanceDynamic* UpperMaterial;
+	class UMaterialInstanceDynamic* LowerMaterial;
+
 	class ACharacter* Attacker;
 	class AActor* Causer;
 	float DamageValue;

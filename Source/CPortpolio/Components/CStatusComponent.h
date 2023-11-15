@@ -31,6 +31,7 @@ public:
 
 	void DecreaseHealth(float InAmount);
 	void IncreaseHealth(float InAmount);
+	
 	FORCEINLINE bool IsDead() { return CurrentHealth <= 0; }
 
 private:

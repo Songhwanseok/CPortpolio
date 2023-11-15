@@ -52,6 +52,9 @@ private: //Actor Component
 	UPROPERTY(VisibleDefaultsOnly)
 		class UCActionComponent* Action;
 
+	UPROPERTY(VisibleDefaultsOnly)
+		class UCMontageComponent* Montages;
+
 	/*UPROPERTY(VisibleDefaultsOnly)
 		class UCFeetComponent* Feet;*/
 };

@@ -92,6 +92,13 @@ void UCActionComponent::OffAllCollisions()
 
 void UCActionComponent::AbortByDamaged()
 {
+	CheckNull(GetCurrentData());
+	CheckTrue(IsUnarmedMode());
+
+	GetCurrentData()->GetEquipment()->Begin_Equip();
+	GetCurrentData()->GetEquipment()->End_Equip();
+
+	GetCurrentData()->GetDoAction()->Abort();
 }
 
 void UCActionComponent::End_Dead()

@@ -46,6 +46,8 @@ public:
 	void SetIdleMode();
 	void SetEquipMode();
 	void SetActionMode();
+	void SetHittedMode();
+	void SetDeadMode();
 
 private:
 	void ChangeType(EStateType InNewType);

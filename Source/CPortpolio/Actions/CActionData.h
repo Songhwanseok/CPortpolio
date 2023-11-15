@@ -15,7 +15,7 @@ public:
 
 private:
 	FString GetCustomActorLabel(class ACharacter* InOwnerCharacter, FString InMiddleName);
-
+	
 public:
 	UPROPERTY(EditAnywhere, Category = "Attachment")
 		TSubclassOf<class ACAttachment> AttachmentClass;

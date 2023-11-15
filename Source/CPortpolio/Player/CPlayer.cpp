@@ -7,15 +7,15 @@
 #include "Components/CStateComponent.h"
 #include "Components/CStatusComponent.h"
 #include "Components/CActionComponent.h"
+#include "Components/CMontageComponent.h"
 
-//Todo. 노티파이 작업하기
 ACPlayer::ACPlayer()
 {
 	CHelpers::CreateSceneComponent(this, &SpringArm, "SpringArm", GetMesh());
 	CHelpers::CreateSceneComponent(this, &Camera, "Camera", SpringArm);
 
 	CHelpers::CreateActorComponent(this, &Action, "Action");
-	//CHelpers::CreateActorComponent(this, &Montages, "Montages");
+	CHelpers::CreateActorComponent(this, &Montages, "Montages");
 	CHelpers::CreateActorComponent(this, &Status, "Status");
 	CHelpers::CreateActorComponent(this, &State, "State");
 	//CHelpers::CreateActorComponent(this, &Feet, "Feet");

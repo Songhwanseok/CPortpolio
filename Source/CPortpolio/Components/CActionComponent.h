@@ -52,7 +52,7 @@ private:
 
 public:
 	UPROPERTY(BlueprintAssignable)
-		FActionTypeChangedSignature OnActionTypeChanged;
+		FActionTypeChangedSignature OnActionTypeChanged; 
 
 private:
 	UPROPERTY(EditDefaultsOnly)
