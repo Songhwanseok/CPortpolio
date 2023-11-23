@@ -57,4 +57,11 @@ private: //Actor Component
 
 	/*UPROPERTY(VisibleDefaultsOnly)
 		class UCFeetComponent* Feet;*/
+
+private: //Widget Class
+	UPROPERTY(EditDefaultsOnly, Category = "Widget")
+		TSubclassOf<class UCEnemyStateBar> EnemyStateBarClass;
+
+private:
+	class UCEnemyStateBar* EnemyStateBarWidget;
 };

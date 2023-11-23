@@ -4,6 +4,8 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Engine/SkeletalMesh.h"
 #include "Camera/CameraComponent.h"
+#include "Blueprint/UserWidget.h"
+#include "Widget/CEnemyStateBar.h"
 #include "Components/CStateComponent.h"
 #include "Components/CStatusComponent.h"
 #include "Components/CActionComponent.h"
@@ -35,12 +37,20 @@ ACPlayer::ACPlayer()
 
 	bUseControllerRotationYaw = false;
 	GetCharacterMovement()->bOrientRotationToMovement = true;
+
+	//Get Widget Class Asset
+	CHelpers::GetClass(&EnemyStateBarClass, "/Game/Widgets/WB_EnemyHealthWidget");
 }
 
 void ACPlayer::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	EnemyStateBarWidget = Cast<UCEnemyStateBar>(CreateWidget(GetController<APlayerController>(), EnemyStateBarClass));
+	CheckNull(EnemyStateBarWidget);
+	EnemyStateBarWidget->AddToViewport();
+
+
 }
 
 
