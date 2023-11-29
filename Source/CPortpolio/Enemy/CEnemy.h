@@ -39,7 +39,7 @@ protected:
 	UPROPERTY(VisibleDefaultsOnly)
 		class UCActionComponent* Action;
 
-private:
+private: 
 	UPROPERTY(VisibleDefaultsOnly)
 		class UCStateComponent* State;
 
@@ -48,6 +48,9 @@ private:
 
 	UPROPERTY(VisibleDefaultsOnly)
 		class UCMontageComponent* Montages;
+
+	UPROPERTY(VisibleDefaultsOnly)
+		class UWidgetComponent* HealthWidget;
 
 private:
 	UPROPERTY(EditAnywhere)
